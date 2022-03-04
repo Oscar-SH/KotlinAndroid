@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">isesion</string>
+    <string name="ingreseC">INGRESE CORREO</string>
+    <string name="ingreseCo">INGRESE CONTRASEÑA</string>
+    <string name="NReal">Nombre real: Oscar Santos Hernandez.</string>
+    <string name="NUsuario">Nombre de usuario: Oscar SH.</string>
+    <string name="Texto1">En 1993, el Gobernador del Estado, Manuel Bartlett Díaz, escuchando la petición popular y la intervención de funcionarios públicos y empresarios interesados, gestionó ante la Secretaría de Educación Pública, dirigida por Ernesto Zedillo Ponce de León, la creación de una Institución de Educación Superior Tecnológica, acción que se vería concretada el 8 de noviembre de 1994 con la publicación del Decreto del Congreso del Estado que expide la ley que crea “Instituto Tecnológico Superior de Teziutlán”, como Organismo Público Descentralizado del Gobierno del Estado, con personalidad jurídica y patrimonio propio.</string>
+    <string name="Biografia">La biografía es la historia de vida de una persona. La palabra proviene de un término griego compuesto: bios (“vida”) y graphein (“escribir”). Biografía puede utilizarse en sentido simbólico. Por ejemplo: “La biografía de la presidenta refleja que nunca ha estado en una situación semejante”. En este caso, la noción de biografía hace referencia a la historia de vida en general, sin un sustento material.</string>
+</resources>
