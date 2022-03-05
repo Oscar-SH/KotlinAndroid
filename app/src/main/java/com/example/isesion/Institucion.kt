@@ -1,18 +1,61 @@
 package com.example.isesion
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
-import java.net.URI
-import java.net.URL
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import com.example.isesion.databinding.ActivityInstitucionBinding
 
 class Institucion : AppCompatActivity() {
+
+    private lateinit var binding: ActivityInstitucionBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_institucion)
+        binding = ActivityInstitucionBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.btnPhone.setOnClickListener{ requestPermissions() }
+    }
+
+    private fun requestPermissions() {
+        val nTec = 2311336169
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            when{
+                ContextCompat.checkSelfPermission(
+                    this,
+                Manifest.permission.CALL_PHONE
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    call(nTec)
+                }
+
+                else -> requestPermissionLauncher.launch(Manifest.permission.CALL_PHONE)
+            }
+        }else{
+            call(nTec)
+        }
+    }
+
+    private fun call(nTec: Long) {
+        startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:$nTec")))
+    }
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ){isGranted->
+        val nTec = 2311336169
+        if (isGranted){
+            call(nTec)
+        }else{
+            Toast.makeText(this, "Necesitas conceder los permisos de llamada",Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun ircompartir(view: View){
@@ -45,15 +88,5 @@ class Institucion : AppCompatActivity() {
         }
         val sendMail = Intent.createChooser(mail, null)
         startActivity(sendMail)
-    }
-
-    fun telefono(view: View){
-        val fon = Intent().apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_PHONE_NUMBER, 2311336169)
-            setPackage("com.android.server.telecom")
-        }
-        val shareFon = Intent.createChooser(fon, null)
-        startActivity(shareFon)
     }
 }
